@@ -1,0 +1,28 @@
+.. index:: pair: class; a::Child <typename Parent>
+.. _doxid-classa_1_1_child:
+.. _cid-a::child:
+
+class a::Child <typename Parent>
+================================
+
+.. toctree::
+	:hidden:
+
+
+
+
+
+.. _doxid-classa_1_1_child_1af8e7c65127690161d170bfe5d06f3c08:
+.. _cid-a::child::foochild:
+.. ref-code-block:: cpp
+	:class: overview-code-block
+
+	// inheritance
+
+	typename Parent
+	    class a::Child <typename Parent>
+
+	// methods
+
+	fooChild ()
+

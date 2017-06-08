@@ -1,0 +1,62 @@
+#...............................................................................
+#
+#  This file is part of the Jancy toolkit.
+#
+#  Jancy is distributed under the MIT license.
+#  For details see accompanying license.txt file,
+#  the public copy of which is also available at:
+#  http://tibbo.com/downloads/archive/jancy/license.txt
+#
+#...............................................................................
+
+dist:     trusty
+sudo:     required
+language: cpp
+
+os:
+    - linux
+    - osx
+
+compiler:
+    - gcc
+    - clang
+
+env:
+    global:
+        - secure: yrLSFSMFrKzVB/g8l/sHJgViJ1l1h4v7VOKd54TGWl1u2Mt/OpFA5r3xdDM1HOLSNEygn0txT0OkuJiaQR8jQbxvGFJRS8tH8QDHTXK6ouShAqKsVxZN71RV2eOvUCKFHIggZcGMD1FVITdE0J04mq18aSY9jSB0033BwrR1geT+IWvEasxDN91jgnPseUHj/ClCzeC5Odq9KIzYRZVNYJXgcLY0TKLWTDVvv+RkClArt9uvqJHzBMBEA+3vDHc655d6GP1QlIj4eD1gLgebSV8duKF0xKGVY+gkS/zmyDP+NSRzc6T0slJtpPSKiadPGwmi69oJQIDq7tk2n+glNbnO5o88IeKGqpTXnYpkbnjQG9+1j1g4pgnjE61NGIbM3G00rSlkTpJQlxQPlOCm+FcNE/eCaf1BB6RxnxkNpdjN4VP3DdhT5293avL6DCeWYyKcMEHsI28dXtcKWepbTRTwNgwgYtLacEDPtbYQdi13XFc+IKDIZHOoHljAHbtvoYRS0Cz6cD8Zdstzu1aJoU0RqWnQZUxtvyj58HLt0ngxbv6f1cuydj4gywO9tnetH7kp5ESGJFmG8Owrj0AgzHHoLxG7lQojnLCGrFBT6z6uqPcVxjT2MUqLrnEEL6WdcqUGU1r6xuZ+ik1ELiznDBWk9fZCbbBrI9j87l/Utjc=
+
+    matrix:
+        - TARGET_CPU=x86 BUILD_CONFIGURATION=Debug
+        - TARGET_CPU=x86 BUILD_CONFIGURATION=Release
+
+matrix:
+    exclude:
+        - os:       osx
+          compiler: gcc
+
+        - os:  osx
+          env: TARGET_CPU=x86 BUILD_CONFIGURATION=Debug
+
+        - os:  osx
+          env: TARGET_CPU=x86 BUILD_CONFIGURATION=Release
+
+install:
+    - source install.sh
+
+script:
+    - source build.sh
+
+jobs:
+    include:
+        - stage: Manual Deploy
+          script: ./deploy.sh
+
+        - stage: GitHub Pages Deploy
+          deploy:
+            provider:      pages
+            skip_cleanup:  true
+            local_dir:     html
+            github_token:  $GITHUB_TOKEN
+
+            on:
+                branch:    master

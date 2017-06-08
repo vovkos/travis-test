@@ -1,0 +1,29 @@
+.. index:: pair: struct; a::Base
+.. _doxid-structa_1_1_base:
+.. _cid-a::base:
+
+struct a::Base
+==============
+
+.. toctree::
+	:hidden:
+
+
+
+
+
+.. _doxid-structa_1_1_base_1a8278ed73d2a37dcf9488f5e7f89ce108:
+.. _cid-a::base::m_y:
+.. ref-code-block:: cpp
+	:class: overview-code-block
+
+	// inheritance
+
+	struct :ref:`a::Root<doxid-structa_1_1_root>`
+	    struct a::Base
+	        struct :ref:`a::Derived<doxid-structa_1_1_derived>`
+
+	// fields
+
+	int m_y
+
