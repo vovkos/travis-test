@@ -1,51 +1,9 @@
-#...............................................................................
-#
-#  This file is part of the Jancy toolkit.
-#
-#  Jancy is distributed under the MIT license.
-#  For details see accompanying license.txt file,
-#  the public copy of which is also available at:
-#  http://tibbo.com/downloads/archive/jancy/license.txt
-#
-#...............................................................................
-
-dist:     trusty
-sudo:     required
-language: cpp
-
-os:
-    - linux
-    - osx
-
-compiler:
-    - gcc
-    - clang
-
-env:
-    matrix:
-        - TARGET_CPU=x86 BUILD_CONFIGURATION=Debug
-        - TARGET_CPU=x86 BUILD_CONFIGURATION=Release
-        - TARGET_CPU=amd64 BUILD_CONFIGURATION=Debug
-        - TARGET_CPU=amd64 BUILD_CONFIGURATION=Release
-
-matrix:
-    exclude:
-        - os:       osx
-          compiler: gcc
-
-        - os:  osx
-          env: TARGET_CPU=x86 BUILD_CONFIGURATION=Debug
-
-        - os:  osx
-          env: TARGET_CPU=x86 BUILD_CONFIGURATION=Release
-
-install:
-    - source install.sh
-
-script:
-    - source build.sh
+sudo: false
 
 jobs:
-    include:
-        - stage: Manual Deploy
-          script: source deploy.sh
+  include:
+    - stage: unit tests
+      script: echo one
+
+    - stage: unit tests
+      script: echo two
