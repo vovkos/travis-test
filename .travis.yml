@@ -2,9 +2,37 @@ dist:     trusty
 sudo:     required
 language: cpp
 
+install:
+  - source install.sh
+
 jobs:
   include:
-    - stage: unit tests
-      script: echo one
-    - stage: unit tests
-      script: echo two
+    - stage: Build and test
+
+      os:
+        - linux
+        - osx
+
+      compiler:
+        - gcc
+        - clang
+
+      env:
+        - TARGET_CPU=x86 BUILD_CONFIGURATION=Debug
+        - TARGET_CPU=x86 BUILD_CONFIGURATION=Release
+        - TARGET_CPU=amd64 BUILD_CONFIGURATION=Debug
+        - TARGET_CPU=amd64 BUILD_CONFIGURATION=Release
+
+      matrix:
+        exclude:
+          - os:       osx
+            compiler: gcc
+
+      script:
+        - source build.sh
+
+    - stage: Manual deploy
+      script: source deploy.sh
+
+    - stage: GitHub Pages deploy
+      script: echo GitHub Pages deploy
