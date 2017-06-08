@@ -10,10 +10,6 @@ compiler:
     - gcc
     - clang
 
-env:
-    global:
-        - secure: "Ux5jhDjUnwyKoR+qfIIkCy8OhnFY1rVmmcM7VhbiRWReUjy0R6vzypWNZNTkm2fke7P1SpC9F8saYZg6bfHCQfeo09EIeHY4SnL90ezbprrNXUcKXGO8ivJS1jdFsaU035Iryf/p9AFAfRugkSx5ahexRUvAOy7Ppjrq+rnBNqI23HkkjvzmGMhDjjfwsyj3en45YmTIouvuu82XXxnqMI+f/4HPuWr8zP2PW8b8NJjDgyIeCbEz9UznpRnf3zvuOdLG5fXmf7dQF9sLayxALrxSwf3HpWDnGkwSibQc0gf4gWA4wWNCLh6OdARSfvqX5vDsJ+HU+OeDaE/ECGRZL6jqi6RkomHQ2C3d6pCj0PWmEnAsIa6VGVZ9lqKSi4IXI/n8NW3IefjSPELCnXBDYri6qrk5oc+dFzbgz26xOT0K1qXFnT5Vv0SDKW+n4oVSp8f8wF0ZDZaMKXgP4a13tfyiCPKIVClImibW+BH6sp6wMyNs3p78u0b2qcEvm4zeoGXURQR4YVoumOemRQcxHwOgKsZF08F/RTxU2v/GFpQb6B18Q31lheWUtl/15oXlpDWiQHv+5hl+m3o/x/UV6rbz1USNkj5dUSaOo50QlWWYWEiyJhbxT9Kui6eWEHoXAHqVi7d2C+BGJi5rwVkGm2/6fjedl9LHv6B2dP5EV8A="
-
 matrix:
     include:
         - os:  linux
@@ -33,7 +29,7 @@ deploy:
     provider:     script
     skip_cleanup: true
 
-    script: /bin/bash ./deploy.sh
+    script: source deploy.sh
 
     on:
         branch:    master
