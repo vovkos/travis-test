@@ -27,5 +27,12 @@ notifications:
     -   provider: Webhook
         url:      http://ioninja.com:5005/appveyor-ci
 
+        body: >-
+            {
+                "foo":  "bar",
+                "platform":  "%PLATFORM%",
+                "configuration":  "%CONFIGURATION%"
+            }
+
         on_build_success: true
         on_build_failure: false
