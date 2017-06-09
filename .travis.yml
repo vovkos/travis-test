@@ -10,14 +10,17 @@ compiler:
     - gcc
     - clang
 
-matrix:
-    include:
-        - os:  linux
-          env: COMMIT_BUNDLE=ON
+env:
+    - TARGET_CPU=x86
+    - TARGET_CPU=amd64
 
+matrix:
     exclude:
         - os:       osx
           compiler: gcc
+
+        - os:  osx
+          env: TARGET_CPU=x86
 
 install:
     - source install.sh
@@ -25,14 +28,8 @@ install:
 script:
     - source build.sh
 
-deploy:
-    provider:     script
-    skip_cleanup: true
-
-    script: source deploy.sh
-
-    on:
-        branch:    master
-        condition: $COMMIT_BUNDLE == ON
-
-#       tags: true
+notifications:
+    webhooks:
+        on_success: always
+        urls:
+            - http://ioninja.com:5005/travis-ci
