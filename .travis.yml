@@ -2,25 +2,9 @@ dist:     trusty
 sudo:     required
 language: cpp
 
-os:
-    - linux
-    - osx
-
 compiler:
     - gcc
     - clang
-
-env:
-    - TARGET_CPU=x86
-    - TARGET_CPU=amd64
-
-matrix:
-    exclude:
-        - os:       osx
-          compiler: gcc
-
-        - os:  osx
-          env: TARGET_CPU=x86
 
 install:
     - source install.sh
