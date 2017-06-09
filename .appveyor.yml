@@ -22,17 +22,11 @@ install:
 
 build_script:
     - call build.bat
+    - ps: Add-AppveyorMessage "PLATFORM=$env:PLATFORM; CONFIGURATION=$env:CONFIGURATION"
+    - ps: Add-AppveyorMessage "APPVEYOR_REPO_COMMIT=$env:APPVEYOR_REPO_COMMIT"
 
 notifications:
     -   provider: Webhook
         url:      http://ioninja.com:5005/appveyor-ci
-
-        body: >-
-            {
-                "foo":  "bar",
-                "platform":  "%PLATFORM%",
-                "configuration":  "%CONFIGURATION%"
-            }
-
         on_build_success: true
         on_build_failure: false
