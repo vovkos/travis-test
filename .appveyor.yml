@@ -1,0 +1,31 @@
+branches:
+    only:
+        - master
+
+image: Visual Studio 2015
+
+init:
+    - git config --global core.autocrlf input
+
+clone_folder: c:\projects\travis-test
+shallow_clone: true
+
+matrix:
+    fast_finish: false
+
+configuration:
+    - Debug
+    - Release
+
+install:
+    - call install.bat
+
+build_script:
+    - call build.bat
+
+notifications:
+    -   provider: Webhook
+        url:      http://ioninja.com:5005/appveyor-ci
+
+        on_build_success: true
+        on_build_failure: false
