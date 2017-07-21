@@ -22,7 +22,6 @@ install:
 
 build_script:
     - call build.bat
-    - ps: Add-AppveyorMessage "PLATFORM=$env:PLATFORM; CONFIGURATION=$env:CONFIGURATION"
     - ps: Add-AppveyorMessage "APPVEYOR_REPO_COMMIT=$env:APPVEYOR_REPO_COMMIT"
 
 notifications:
